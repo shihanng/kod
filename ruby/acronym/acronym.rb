@@ -1,11 +1,9 @@
 module Acronym
   def self.abbreviate(terminology)
-    splitted = terminology.gsub('-', ' ').split
-
     acronym = ""
 
-    splitted.each do |word|
-      acronym += word[0]
+    terminology.scan(/\b[[:alpha:]]/) do |match|
+      acronym += match
     end
 
     acronym.upcase
