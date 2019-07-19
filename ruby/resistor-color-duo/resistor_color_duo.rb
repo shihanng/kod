@@ -15,9 +15,6 @@ COLORS = {
 
 module ResistorColorDuo
   def self.value(colors)
-    res = colors.map.reduce('') do |r, color|
-      r + COLORS[color.to_sym]
-    end
-    res.to_i
+    colors.map(&:to_sym).map(&COLORS).join.to_i
   end
 end
