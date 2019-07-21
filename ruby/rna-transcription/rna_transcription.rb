@@ -1,7 +1,7 @@
-module Complement
-  @DNA2RNA = { 'G' => 'C', 'C' => 'G', 'T' => 'A', 'A' => 'U' }
+DNA2RNA = { 'G' => 'C', 'C' => 'G', 'T' => 'A', 'A' => 'U' }.freeze
 
+module Complement
   def self.of_dna(dna)
-    dna.gsub(/[GCTA]/, @DNA2RNA)
+    dna.gsub(/[GCTA]/, DNA2RNA)
   end
 end
