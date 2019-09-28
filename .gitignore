@@ -1,6 +1,12 @@
 
-# Created by https://www.gitignore.io/api/node,ruby
-# Edit at https://www.gitignore.io/?templates=node,ruby
+# Created by https://www.gitignore.io/api/node,ruby,elm
+# Edit at https://www.gitignore.io/?templates=node,ruby,elm
+
+### Elm ###
+# elm-package generated files
+elm-stuff
+# elm-repl generated files
+repl-temp-*
 
 ### Node ###
 # Logs
@@ -80,6 +86,9 @@ typings/
 # nuxt.js build output
 .nuxt
 
+# react / gatsby 
+public/
+
 # vuepress build output
 .vuepress/dist
 
@@ -146,5 +155,5 @@ build-iPhoneSimulator/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
-# End of https://www.gitignore.io/api/node,ruby
+# End of https://www.gitignore.io/api/node,ruby,elm
 
