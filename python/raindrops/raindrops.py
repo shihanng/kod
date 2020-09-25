@@ -10,4 +10,4 @@ def convert(number):
     if number % 7 == 0:
         drops += "Plong"
 
-    return drops if drops else str(number)
+    return drops or str(number)
