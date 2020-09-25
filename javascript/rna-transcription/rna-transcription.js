@@ -6,9 +6,8 @@ const NUCLEOTIDE_COMPLEMENTS = {
 };
 
 export const toRna = (dna) => {
-  let rna = "";
-
-  dna.split("").map((c) => (rna += NUCLEOTIDE_COMPLEMENTS[c]));
-
-  return rna;
+  return dna
+    .split("")
+    .map((c) => NUCLEOTIDE_COMPLEMENTS[c])
+    .join("");
 };
