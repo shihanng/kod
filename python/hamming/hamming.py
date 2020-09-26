@@ -4,8 +4,8 @@ def distance(strand_a, strand_b):
 
     hamming_distance = 0
 
-    for i, elem_a in enumerate(strand_a):
-        if elem_a != strand_b[i]:
+    for elem_a, elem_b in zip(strand_a, strand_b):
+        if elem_a != elem_b:
             hamming_distance += 1
 
     return hamming_distance
