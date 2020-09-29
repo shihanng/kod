@@ -5,7 +5,7 @@ def is_isogram(string):
         if letter in found:
             return False
 
-        if letter not in (" ", "-"):
+        if letter.isalpha():
             found.append(letter)
 
     return True
