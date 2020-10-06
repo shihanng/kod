@@ -36,11 +36,9 @@ var scores = map[rune]int{
 
 // Score computes scrabble score of a given word.
 func Score(word string) int {
-	normalizedWord := strings.ToUpper(word)
-
 	var s int
 
-	for _, r := range normalizedWord {
+	for _, r := range strings.ToUpper(word) {
 		s += scores[r]
 	}
 
