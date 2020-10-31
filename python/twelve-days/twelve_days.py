@@ -37,7 +37,4 @@ def get_verse(nth_verse):
     first_gift = LYRICS[0] if nth_verse == 0 else "and " + LYRICS[0]
     gifts = [*LYRICS[nth_verse:0:-1], first_gift]
 
-    return (
-        f"On the { NTH[nth_verse] } day of Christmas my true love gave to me: "
-        f'{", ".join(gifts)}.'
-    )
+    return f"On the { NTH[nth_verse] } day of Christmas my true love gave to me: {', '.join(gifts)}."
