@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	fmt.Println(fib(6))
@@ -73,4 +75,51 @@ func (t memoGridTraveler) travel(m, n int) int {
 
 	t[key] = t.travel(m-1, n) + t.travel(m, n-1)
 	return t[key]
+}
+
+func canSum(targetSum int, numbers []int) bool {
+	if targetSum == 0 {
+		return true
+	}
+
+	if targetSum < 0 {
+		return false
+	}
+
+	for _, n := range numbers {
+		remainder := targetSum - n
+		if canSum(remainder, numbers) {
+			return true
+		}
+	}
+
+	return false
+}
+
+type fastCanSum map[int]bool
+
+func (c fastCanSum) canSum(targetSum int, numbers []int) bool {
+	if targetSum == 0 {
+		return true
+	}
+
+	if targetSum < 0 {
+		return false
+	}
+
+	if res, ok := c[targetSum]; ok {
+		return res
+	}
+
+	for _, n := range numbers {
+		remainder := targetSum - n
+		c[targetSum] = c.canSum(remainder, numbers)
+		if c[targetSum] {
+			return true
+		}
+	}
+
+	c[targetSum] = false
+
+	return false
 }
