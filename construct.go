@@ -27,3 +27,29 @@ func (c canConstruct) can(target string, elements []string) bool {
 	c[target] = false
 	return false
 }
+
+type countConstruct map[string]int
+
+func (c countConstruct) count(target string, elements []string) int {
+	if res, ok := c[target]; ok {
+		return res
+	}
+
+	if target == "" {
+		return 1
+	}
+
+	var count int
+	for _, elem := range elements {
+		if !strings.HasPrefix(target, elem) {
+			continue
+		}
+
+		if n := c.count(strings.TrimPrefix(target, elem), elements); n > 0 {
+			count += n
+		}
+	}
+
+	c[target] = count
+	return count
+}
