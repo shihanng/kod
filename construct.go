@@ -1,6 +1,8 @@
 package main
 
-import "strings"
+import (
+	"strings"
+)
 
 type canConstruct map[string]bool
 
@@ -52,4 +54,44 @@ func (c countConstruct) count(target string, elements []string) int {
 
 	c[target] = count
 	return count
+}
+
+type allConstruct map[string][][]string
+
+func (c allConstruct) all(target string, elements []string) [][]string {
+	if res, ok := c[target]; ok {
+		return res
+	}
+
+	if target == "" {
+		return [][]string{}
+	}
+
+	var all [][]string
+
+	for _, elem := range elements {
+		if !strings.HasPrefix(target, elem) {
+			continue
+		}
+
+		res := c.all(strings.TrimPrefix(target, elem), elements)
+		if res == nil {
+			continue
+		}
+
+		tmp := []string{elem}
+		if len(res) == 0 {
+			all = append(all, tmp)
+		} else {
+			for _, r := range res {
+				withElem := append(tmp, r...)
+				all = append(all, withElem)
+			}
+		}
+
+	}
+
+	c[target] = all
+
+	return all
 }
