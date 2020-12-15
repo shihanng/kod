@@ -16,3 +16,25 @@ func fibTabulation(n int) int {
 
 	return fibNumbers[n]
 }
+
+func gridTravellerTabulation(m, n int) int {
+	grid := make([][]int, n+1)
+	for j := 0; j <= n; j++ {
+		grid[j] = make([]int, m+1)
+	}
+
+	grid[1][1] = 1
+
+	for j := 0; j <= n; j++ {
+		for i := 0; i <= m; i++ {
+			if i != m {
+				grid[j][i+1] += grid[j][i]
+			}
+			if j != n {
+				grid[j+1][i] += grid[j][i]
+			}
+		}
+	}
+
+	return grid[n][m]
+}
