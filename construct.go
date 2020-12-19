@@ -113,3 +113,21 @@ func canConstructTabulation(target string, elements []string) bool {
 
 	return results[len(target)]
 }
+
+func countConstructTabulation(target string, elements []string) int {
+	results := make([]int, len(target)+1)
+	results[0] = 1
+
+	for i := range results {
+		if results[i] == 0 {
+			continue
+		}
+		for _, elem := range elements {
+			if strings.HasPrefix(target[i:], elem) {
+				results[len(elem)+i] += results[i]
+			}
+		}
+	}
+
+	return results[len(target)]
+}
