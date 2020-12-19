@@ -95,3 +95,21 @@ func (c allConstruct) all(target string, elements []string) [][]string {
 
 	return all
 }
+
+func canConstructTabulation(target string, elements []string) bool {
+	results := make([]bool, len(target)+1)
+	results[0] = true
+
+	for i := range results {
+		if !results[i] {
+			continue
+		}
+		for _, elem := range elements {
+			if strings.HasPrefix(target[i:], elem) {
+				results[len(elem)+i] = true
+			}
+		}
+	}
+
+	return results[len(target)]
+}
