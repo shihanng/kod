@@ -131,3 +131,31 @@ func countConstructTabulation(target string, elements []string) int {
 
 	return results[len(target)]
 }
+
+func allConstructTabulation(target string, elements []string) [][]string {
+	results := make([][][]string, len(target)+1)
+
+	results[0] = [][]string{}
+
+	for i := range results {
+		if results[i] == nil {
+			continue
+		}
+		for _, elem := range elements {
+			if strings.HasPrefix(target[i:], elem) {
+				combinations := make([][]string, 0, len(target)+1)
+				if i == 0 {
+					combinations = append(combinations, []string{elem})
+				} else {
+					for _, res := range results[i] {
+						c := append(res, elem)
+						combinations = append(combinations, c)
+					}
+				}
+				results[len(elem)+i] = append(results[len(elem)+i], combinations...)
+			}
+		}
+	}
+
+	return results[len(target)]
+}
