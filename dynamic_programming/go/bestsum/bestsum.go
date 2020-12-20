@@ -45,7 +45,7 @@ func tabulation(targetSum int, numbers []int) []int {
 		if targets[i] != nil {
 			for _, n := range numbers {
 				newSum := append(targets[i], n)
-				if i+n <= targetSum && (targets[i+n] == nil || len(newSum) < len(targets[i+n])) {
+				if i+n <= targetSum && (targets[i+n] == nil || len(newSum) <= len(targets[i+n])) {
 					targets[i+n] = newSum
 				}
 			}
