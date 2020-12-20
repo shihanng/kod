@@ -1,4 +1,4 @@
-package main
+package bestsum
 
 import (
 	"fmt"
@@ -6,13 +6,12 @@ import (
 	"testing"
 )
 
-func Test_bestSumTabulation(t *testing.T) {
+func Test_bestsum(t *testing.T) {
 	type args struct {
 		targetSum int
 		numbers   []int
 	}
 	tests := []struct {
-		name string
 		args args
 		want []int
 	}{
@@ -28,7 +27,7 @@ func Test_bestSumTabulation(t *testing.T) {
 				targetSum: 8,
 				numbers:   []int{2, 3, 5},
 			},
-			want: []int{3, 5},
+			want: []int{5, 3},
 		},
 		{
 			args: args{
@@ -47,8 +46,13 @@ func Test_bestSumTabulation(t *testing.T) {
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("case-%d", i), func(t *testing.T) {
-			if got := bestSumTabulation(tt.args.targetSum, tt.args.numbers); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("bestSumTabulation() = %v, want %v", got, tt.want)
+			m := make(memo)
+			if got := m.recursive(tt.args.targetSum, tt.args.numbers); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("memo.recursive() = %v, want %v", got, tt.want)
+			}
+
+			if got := tabulation(tt.args.targetSum, tt.args.numbers); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("tabulation() = %v, want %v", got, tt.want)
 			}
 		})
 	}
