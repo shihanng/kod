@@ -4,32 +4,6 @@ import (
 	"strings"
 )
 
-type countConstruct map[string]int
-
-func (c countConstruct) count(target string, elements []string) int {
-	if res, ok := c[target]; ok {
-		return res
-	}
-
-	if target == "" {
-		return 1
-	}
-
-	var count int
-	for _, elem := range elements {
-		if !strings.HasPrefix(target, elem) {
-			continue
-		}
-
-		if n := c.count(strings.TrimPrefix(target, elem), elements); n > 0 {
-			count += n
-		}
-	}
-
-	c[target] = count
-	return count
-}
-
 type allConstruct map[string][][]string
 
 func (c allConstruct) all(target string, elements []string) [][]string {
@@ -68,24 +42,6 @@ func (c allConstruct) all(target string, elements []string) [][]string {
 	c[target] = all
 
 	return all
-}
-
-func countConstructTabulation(target string, elements []string) int {
-	results := make([]int, len(target)+1)
-	results[0] = 1
-
-	for i := range results {
-		if results[i] == 0 {
-			continue
-		}
-		for _, elem := range elements {
-			if strings.HasPrefix(target[i:], elem) {
-				results[len(elem)+i] += results[i]
-			}
-		}
-	}
-
-	return results[len(target)]
 }
 
 func allConstructTabulation(target string, elements []string) [][]string {
