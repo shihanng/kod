@@ -1,13 +1,13 @@
-package main
+package allconstruct
 
 import (
 	"strings"
 )
 
-type allConstruct map[string][][]string
+type memo map[string][][]string
 
-func (c allConstruct) all(target string, elements []string) [][]string {
-	if res, ok := c[target]; ok {
+func (m memo) recursive(target string, elements []string) [][]string {
+	if res, ok := m[target]; ok {
 		return res
 	}
 
@@ -22,7 +22,7 @@ func (c allConstruct) all(target string, elements []string) [][]string {
 			continue
 		}
 
-		res := c.all(strings.TrimPrefix(target, elem), elements)
+		res := m.recursive(strings.TrimPrefix(target, elem), elements)
 		if res == nil {
 			continue
 		}
@@ -39,12 +39,12 @@ func (c allConstruct) all(target string, elements []string) [][]string {
 
 	}
 
-	c[target] = all
+	m[target] = all
 
 	return all
 }
 
-func allConstructTabulation(target string, elements []string) [][]string {
+func tabulation(target string, elements []string) [][]string {
 	results := make([][][]string, len(target)+1)
 
 	results[0] = [][]string{}
