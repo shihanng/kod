@@ -6,61 +6,6 @@ import (
 	"testing"
 )
 
-func Test_canSumTabulation(t *testing.T) {
-	type args struct {
-		targetSum int
-		numbers   []int
-	}
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		{
-			args: args{
-				targetSum: 7,
-				numbers:   []int{2, 3},
-			},
-			want: true,
-		},
-		{
-			args: args{
-				targetSum: 7,
-				numbers:   []int{5, 3, 4, 7},
-			},
-			want: true,
-		},
-		{
-			args: args{
-				targetSum: 7,
-				numbers:   []int{2, 4},
-			},
-			want: false,
-		},
-		{
-			args: args{
-				targetSum: 8,
-				numbers:   []int{2, 3, 5},
-			},
-			want: true,
-		},
-		{
-			args: args{
-				targetSum: 300,
-				numbers:   []int{7, 14},
-			},
-			want: false,
-		},
-	}
-	for i, tt := range tests {
-		t.Run(fmt.Sprintf("case-%d", i), func(t *testing.T) {
-			if got := canSumTabulation(tt.args.targetSum, tt.args.numbers); got != tt.want {
-				t.Errorf("canSumTabulation() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func Test_howSumTabulation(t *testing.T) {
 	type args struct {
 		targetSum int

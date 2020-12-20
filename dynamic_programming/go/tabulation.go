@@ -1,22 +1,5 @@
 package main
 
-func canSumTabulation(targetSum int, numbers []int) bool {
-	targets := make([]bool, targetSum+1)
-	targets[0] = true
-
-	for i := range targets {
-		if targets[i] {
-			for _, n := range numbers {
-				if i+n <= targetSum {
-					targets[i+n] = true
-				}
-			}
-		}
-	}
-
-	return targets[targetSum]
-}
-
 func howSumTabulation(targetSum int, numbers []int) []int {
 	targets := make([][]int, targetSum+1)
 
