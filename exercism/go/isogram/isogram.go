@@ -2,6 +2,8 @@ package isogram
 
 import "strings"
 
+// IsIsogram checks if the given input does not contain repeating letter.
+// Spaces and hyphens are allowed to appear multiple times.
 func IsIsogram(input string) bool {
 	lowerInput := strings.ToLower(input)
 
