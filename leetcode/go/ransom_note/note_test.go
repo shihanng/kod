@@ -41,6 +41,9 @@ func Test_canConstruct(t *testing.T) {
 			if got := canConstruct(tt.args.ransomNote, tt.args.magazine); got != tt.want {
 				t.Errorf("canConstruct() = %v, want %v", got, tt.want)
 			}
+			if got := canConstructFast(tt.args.ransomNote, tt.args.magazine); got != tt.want {
+				t.Errorf("canConstruct() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }
